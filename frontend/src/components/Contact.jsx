@@ -13,8 +13,9 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      // Make a POST request to send the email
       const { data } = await axios.post(
-        "http://localhost:4000/send/mail",
+        "http://localhost:4000/send/mail",  // Your backend URL
         {
           name,
           email,
@@ -25,6 +26,8 @@ const Contact = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
+
+      // Reset form and show success message
       setName("");
       setEmail("");
       setMessage("");
@@ -32,7 +35,8 @@ const Contact = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data.message);
+      // Handle any errors and show error message
+      toast.error(error.response?.data?.message || "Failed to send message.");
     }
   };
 
@@ -58,8 +62,7 @@ const Contact = () => {
         </div>
         <div>
           <label>Message</label>
-          <input
-            type="text"
+          <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
