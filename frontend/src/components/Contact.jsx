@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 
@@ -14,14 +14,13 @@ const Contact = () => {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/send/mail",
+        "http://localhost:4000/send/mail",  // Update with actual backend URL
         {
           name,
           email,
           message,
         },
         {
-          withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -29,10 +28,10 @@ const Contact = () => {
       setEmail("");
       setMessage("");
       toast.success(data.message);
-      setLoading(false);
     } catch (error) {
       setLoading(false);
-      toast.error(error.response.data.message);
+      console.error("Error while sending email:", error);
+      toast.error(error.response?.data?.message || "Failed to send message.");
     }
   };
 
