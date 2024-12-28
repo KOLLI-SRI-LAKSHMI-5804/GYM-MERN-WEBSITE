@@ -1,0 +1,25 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "env": {
+      "PORT": "4000",
+      "FRONTEND_URL": "http://localhost:5174",
+      "SMTP_HOST": "smtp.gmail.com",
+      "SMTP_PORT": "465",
+      "SMTP_SERVICE": "gmail",
+      "SMTP_MAIL": "kollisrilakshmi19@gmail.com",
+      "SMTP_PASSWORD": "enik exgv jyiv ikzq"
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "server.js"
+      }
+    ]
+  }
+  
